@@ -1,4 +1,4 @@
-# befeni-basic-est
+# befeni-basic-test
 
 ## Requirements
 Ensure your system has Docker and Docker Compose installed with the following minimum versions:
