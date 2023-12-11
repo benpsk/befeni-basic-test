@@ -1,14 +1,17 @@
 <?php
+
 namespace App;
 
 class Calculator
 {
-    private float $result = 0.0;
     protected Operator $operator;
+    private float $result = 0.0;
+
     public function __construct()
     {
         $this->operator = new Operator();
     }
+
     public function processInstructions(array $instructions): float
     {
         $fn = $instructions[0]['operator'];

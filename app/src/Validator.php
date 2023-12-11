@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 use Exception;
 
 class Validator
@@ -26,9 +27,28 @@ class Validator
             throw new Exception("Error: File type must be .txt");
         }
         if (!file_exists($filename)) {
-            throw new Exception("Error reading file: $filename");
+            throw new Exception("Error: file not exists: $filename");
         }
         return $filename;
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function instruction(array $input): array
+    {
+        $instructions = [];
+        foreach ($input as $instruction) {
+            $instruction = explode(' ', $instruction);
+            $operator = $instruction[0];
+            $value = $instruction[1];
+            $this->validateOperator($operator);
+            $this->validateValue($value);
+            $instructions[] = ['operator' => $operator, 'value' => (float)$value];
+        }
+        $this->validateApplyOnce($instructions);
+        $this->validateApplyLast($instructions);
+        return $instructions;
     }
 
     /**
@@ -74,23 +94,5 @@ class Validator
         if ($instructions[$last]['operator'] !== 'apply') {
             throw new Exception("Error: the apply operator must be used last");
         }
-    }
-    /**
-     * @throws Exception
-     */
-    public function instruction(array $input): array
-    {
-        $instructions = [];
-        foreach ($input as $instruction) {
-            $instruction = explode(' ', $instruction);
-            $operator = $instruction[0];
-            $value = $instruction[1];
-            $this->validateOperator($operator);
-            $this->validateValue($value);
-            $instructions[] = ['operator' => $operator, 'value' => (float) $value];
-        }
-        $this->validateApplyOnce($instructions);
-        $this->validateApplyLast($instructions);
-        return $instructions;
     }
 }

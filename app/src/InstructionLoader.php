@@ -13,7 +13,7 @@ class InstructionLoader
     {
         $fileContent = file_get_contents($filename); // need to use chunk to read large file
         if ($fileContent === false) {
-            throw new Exception("Error reading file: $filename");
+            throw new Exception("Error: reading file: $filename");
         }
         $instructions = explode("\n", $fileContent);
         return array_filter($instructions, 'trim');

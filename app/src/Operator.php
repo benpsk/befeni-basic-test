@@ -2,20 +2,30 @@
 
 namespace App;
 
-class Operator {
-    public function add($result, $value): float {
+class Operator
+{
+    public function add(float $result, float $value): float
+    {
         return $result + $value;
     }
-    public function subtract($result, $value): float {
+
+    public function subtract(float $result, float $value): float
+    {
         return $result - $value;
     }
-    public function multiply($result, $value): float {
+
+    public function multiply(float $result, float $value): float
+    {
         return $result * $value;
     }
-    public function divide($result, $value): float {
+
+    public function divide(float $result, float $value): float
+    {
         return $value == 0 ? $value : $result / $value;
     }
-    public function apply($result, $value): float {
+
+    public function apply(float $result, float $value): float
+    {
         return $result == 0.0 ? $value : $result;
     }
 }

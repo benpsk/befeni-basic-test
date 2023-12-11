@@ -28,7 +28,7 @@ class ValidatorTest extends TestCase
     public function test_not_exist_file_should_success()
     {
         $filename = 'test.txt';
-        $this->expectExceptionMessage("Error reading file: $filename");
+        $this->expectExceptionMessage("Error: file not exists: $filename");
         $this->validator->file($filename);
     }
 

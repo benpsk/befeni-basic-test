@@ -1,3 +1,4 @@
 #!/bin/bash
 set -e
-exec "$@"
+php /usr/local/bin/composer install --optimize-autoloader
+exec tail -f /dev/null
